@@ -18,12 +18,12 @@ function displayResults(data) {
     if (data.length === 0) {
         resultsDiv.textContent = 'No results found.';
     } else {
-        data.forEach((store) => {
-            const storeInfo = document.createElement('div');
-            storeInfo.innerHTML = `<strong>${store.name}</strong><br>
-            ${store.address}<br>
-            Price: $${store.price.toFixed(2)}`;
-            resultsDiv.appendChild(storeInfo);
+        data.forEach((item) => {
+            const itemDiv = document.createElement('div');
+            itemDiv.innerHTML = `<strong>${item.name}</strong><br>
+                ${item.address}<br>
+                Price: $${item.price.toFixed(2)}`;
+            resultsDiv.appendChild(itemDiv);
         });
     }
 }

@@ -1,15 +1,22 @@
 // Load environment variables from .env file
 require('dotenv').config();
 
+// Import necessary modules
 const express = require('express');
 const axios = require('axios');
 const { URLSearchParams } = require('url');
-const app = express();
 
 // Access environment variables
 const krogerClientId = process.env.KROGER_CLIENT_ID;
 const krogerClientSecret = process.env.KROGER_CLIENT_SECRET;
 const PORT = process.env.PORT || 3000;
+
+// Temporary: Log the credentials for testing purposes (Remove after verifying)
+// console.log('KROGER_CLIENT_ID:', krogerClientId);
+// console.log('KROGER_CLIENT_SECRET:', krogerClientSecret);
+
+// Create the Express app
+const app = express();
 
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
@@ -104,13 +111,7 @@ app.get('/search', async (req, res) => {
                 name: item.description,
                 price: price,
                 address: store
-                    ? store.address.addressLine1 +
-                      ', ' +
-                      store.address.city +
-                      ', ' +
-                      store.address.state +
-                      ' ' +
-                      store.address.zipCode
+                    ? `${store.address.addressLine1}, ${store.address.city}, ${store.address.state} ${store.address.zipCode}`
                     : 'Unknown Address',
             };
         });
